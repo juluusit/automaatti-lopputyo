@@ -48,10 +48,9 @@ int main()
 
     while (true)
     {
-        Owner choosenOwner("");
         cout << "available users : " << endl;
 
-        for (int id=0; id < ownerList.size(); id++)
+        for (int id=0; id < (int)ownerList.size(); id++)
         {
             cout << id << ". " << ownerList.at(id).getName() << endl;
         }
@@ -63,13 +62,13 @@ int main()
         int accountIndex;
         int userIndex;
 
-        if (userInput > ownerList.size() || userInput < 0)
+        if (userInput > (int)ownerList.size() || userInput < 0)
         {
             cout << "no such user, exiting.." << endl;
             return 0;
         }
 
-        choosenOwner = ownerList.at(userInput);
+        Owner choosenOwner = ownerList.at(userInput);
         userIndex = userInput;
 
         cout << "choosen owner is: " << choosenOwner.getName() << endl;
@@ -78,7 +77,7 @@ int main()
 
         auto accountList = choosenOwner.getAccountList();
 
-        for (int id = 0; id < accountList.size(); id++)
+        for (int id = 0; id < (int)accountList.size(); id++)
         {
             cout << id << ". " << accountList.at(id).getName() << endl;
         }
@@ -88,15 +87,13 @@ int main()
         cout << "choose account (integer): ";
         cin >> userInput;
 
-        Account choosenAccount("", 0);
-
-        if (userInput > accountList.size() || userInput < 0)
+        if (userInput > (int)accountList.size() || userInput < 0)
         {
             cout << "no such account, exiting.." << endl;
             return 0;
         }
 
-        choosenAccount = accountList.at(userInput);
+        Account choosenAccount = accountList.at(userInput);
         accountIndex = userInput;
 
         cout << "=====================================" << endl;
@@ -136,6 +133,5 @@ int main()
 
         choosenOwner.updateAccountListItem(accountIndex, choosenAccount);
         ownerList.at(userIndex) = choosenOwner;
-
     }
 }
